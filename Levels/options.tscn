@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvndxot38kuh"]
+
+[ext_resource type="Script" path="res://Scripts/options.gd" id="1_4flmr"]
+[ext_resource type="Texture2D" uid="uid://btftonekg0q6r" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Tilemaps/background tile.png" id="2_tj8xa"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4flmr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tj8xa")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 151.0
+offset_right = 808.0
+offset_bottom = 473.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="BoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Volume" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "VOLUME"
+
+[node name="Back" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "BACK"
+
+[connection signal="pressed" from="MarginContainer/BoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/Back" to="." method="_on_back_pressed"]

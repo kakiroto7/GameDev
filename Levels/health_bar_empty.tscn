@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxmowl8qlk54f"]
+
+[ext_resource type="Texture2D" uid="uid://cior5fevx5qy0" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/health_bar_empty_.png" id="1_1fc58"]
+
+[node name="ProgressBar" type="ProgressBar"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 23.0
+offset_right = -24.0
+offset_bottom = 87.0
+grow_horizontal = 0
+show_percentage = false
+
+[node name="HealthBarEmpty" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.263
+anchor_right = 1.0
+anchor_bottom = 1.561
+offset_left = -0.0329971
+offset_bottom = -0.0260086
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1fc58")
+metadata/_edit_use_anchors_ = true

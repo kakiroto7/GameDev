@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://4hlyq05ht3gn"]
+
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_a7dv2"]
+[ext_resource type="Texture2D" uid="uid://qbxi7o01gbbm" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/game over.png" id="2_imarf"]
+
+[sub_resource type="Animation" id="Animation_srs15"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_l54sl"]
+resource_name = "fade_in"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7sot"]
+_data = {
+"RESET": SubResource("Animation_srs15"),
+"fade_in": SubResource("Animation_l54sl")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8o00p"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a7dv2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_n7sot")
+}
+autoplay = "fade_in"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.477
+anchor_top = 0.5
+anchor_right = 0.477
+anchor_bottom = 0.5
+offset_left = -467.504
+offset_top = -267.0
+offset_right = -145.504
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="GameOver" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_imarf")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8o00p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="yes" type="Button" parent="CanvasLayer"]
+offset_left = 456.0
+offset_top = 440.0
+offset_right = 539.0
+offset_bottom = 471.0
+scale = Vector2(1.8375, 2.75)
+text = "YES"
+
+[node name="no" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 456.0
+offset_top = 536.0
+offset_right = 540.0
+offset_bottom = 567.0
+scale = Vector2(1.8, 3.09375)
+text = "NO
+"
+
+[connection signal="pressed" from="CanvasLayer/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="CanvasLayer/no" to="." method="_on_no_pressed"]

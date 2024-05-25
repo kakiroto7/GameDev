@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://k5neltg4nrqm"]
+
+[ext_resource type="Texture2D" uid="uid://cg42qvmfommn1" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Tilemaps/moeda_sheet.png" id="1_b13mh"]
+
+[sub_resource type="GDScript" id="GDScript_dked7"]
+script/source = "extends Area2D
+
+@onready var game_manager = %GameManager
+
+func _on_body_entered(body):
+	if (body.name == \"Sprite2D\"):
+		game_manager.add_point()
+		queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh41u"]
+atlas = ExtResource("1_b13mh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfefg"]
+atlas = ExtResource("1_b13mh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b48n1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh41u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfefg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_af6ef"]
+radius = 17.0294
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(759, 444)
+script = SubResource("GDScript_dked7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.00002, 1.50001)
+scale = Vector2(2.87501, 2.6875)
+sprite_frames = SubResource("SpriteFrames_b48n1")
+autoplay = "default"
+frame_progress = 0.18577
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_af6ef")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

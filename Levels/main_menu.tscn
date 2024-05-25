@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1b364w5fn4jh"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_a062f"]
+[ext_resource type="Texture2D" uid="uid://btftonekg0q6r" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Tilemaps/background tile.png" id="2_44y4m"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+script = ExtResource("1_a062f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_44y4m")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 117.0
+offset_right = 751.0
+offset_bottom = 596.0
+
+[node name="BoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Control" type="Control" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "JOGO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="Options" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="Exit" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "EXIT
+"
+
+[connection signal="pressed" from="MarginContainer/BoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/Exit" to="." method="_on_exit_pressed"]

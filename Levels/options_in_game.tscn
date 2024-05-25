@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://blakxwddfv5ft"]
+
+[ext_resource type="Script" path="res://Scripts/options_in_game_menu.gd" id="1_dmubp"]
+[ext_resource type="Texture2D" uid="uid://btftonekg0q6r" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Tilemaps/background tile.png" id="2_6nl6j"]
+
+[sub_resource type="GDScript" id="GDScript_bgetg"]
+script/source = "extends Control
+
+func _on_settings_in_game_pressed():
+	get_tree().change_scene_to_file(\"res://Levels/options_in_game.tscn\")
+"
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmubp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6nl6j")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 151.0
+offset_right = 808.0
+offset_bottom = 473.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="BoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+script = SubResource("GDScript_bgetg")
+
+[node name="save" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "SAVE GAME"
+
+[node name="back_to_game" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "BACK TO GAME"
+
+[node name="back_to_main_menu" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "QUIT TO MAIN MENU"
+
+[connection signal="pressed" from="MarginContainer/BoxContainer/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/back_to_game" to="." method="_on_back_to_game_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/back_to_main_menu" to="." method="_on_back_to_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/back_to_main_menu" to="." method="_on_back_pressed"]

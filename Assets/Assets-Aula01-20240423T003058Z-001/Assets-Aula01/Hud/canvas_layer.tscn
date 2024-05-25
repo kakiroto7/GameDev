@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://bo1t5g228ygvy"]
+
+[ext_resource type="Script" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/HUd/health_bar.gd" id="1_k8lbx"]
+[ext_resource type="Texture2D" uid="uid://bewmsdc78svij" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/options_menu.png" id="1_rbpxv"]
+[ext_resource type="Texture2D" uid="uid://b83qmhxu61bd1" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/heatlh_bar_progress.png" id="2_krxxn"]
+[ext_resource type="Texture2D" uid="uid://b4sx8fpa0h8wj" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/esquerda.png" id="2_t8y4b"]
+[ext_resource type="Texture2D" uid="uid://cmc7tonfbsy5y" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/heatlh_bar_progress_fill.png" id="3_eug1e"]
+[ext_resource type="Texture2D" uid="uid://cquq3flqcd0dw" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/direita.png" id="3_mgltg"]
+[ext_resource type="Texture2D" uid="uid://hjeehb07m0u6" path="res://Assets/Assets-Aula01-20240423T003058Z-001/Assets-Aula01/Hud/pulo.png" id="4_hw3pp"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Buttons" type="CanvasLayer" parent="."]
+
+[node name="left" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(16, 512)
+scale = Vector2(1.79688, 1.65625)
+texture_normal = ExtResource("2_t8y4b")
+action = "left"
+
+[node name="right" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(112, 512)
+scale = Vector2(1.75, 1.625)
+texture_normal = ExtResource("3_mgltg")
+action = "right"
+
+[node name="jump" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(976, 512)
+scale = Vector2(1.875, 1.625)
+texture_normal = ExtResource("4_hw3pp")
+action = "jump"
+
+[node name="settings_in_game" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(1040, 24)
+scale = Vector2(2.90909, 2.75)
+texture_normal = ExtResource("1_rbpxv")
+action = "get_tree().c"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.285
+anchor_bottom = 0.222
+offset_right = -0.320038
+offset_bottom = -7.85602
+script = ExtResource("1_k8lbx")
+
+[node name="Timer" type="Timer" parent="Control"]
+wait_time = 0.1
+autostart = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.976
+anchor_bottom = 1.824
+offset_right = -240.128
+offset_bottom = -186.064
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture_under = ExtResource("2_krxxn")
+texture_over = ExtResource("2_krxxn")
+texture_progress = ExtResource("3_eug1e")
+script = ExtResource("1_k8lbx")
+
+[connection signal="pressed" from="Buttons/settings_in_game" to="Control" method="_on_settings_in_game_pressed"]
+[connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]
